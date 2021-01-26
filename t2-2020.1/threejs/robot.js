@@ -19,9 +19,9 @@ function gen_robot() {
     var left_upper_arm = gen_rect(1.5, 4);
     left_upper_arm.name = "left_upper_arm";
     var left_lower_arm = gen_rect(1, 3);
-    left_lower_arm.name = "lower_arm";
+    left_lower_arm.name = "left_lower_arm";
     var left_hand = gen_rect(1.5,0.5);
-    left_hand.name = "hand";
+    left_hand.name = "left_hand";
     left_upper_arm.add(left_lower_arm);
     left_lower_arm.add(left_hand);
     left_hand.position.y = -1.5;
@@ -29,9 +29,19 @@ function gen_robot() {
     left_upper_arm.position.x = -2.6;
 
     // right: upper arm, arm, hand
-    var right_upper_arm = left_upper_arm.clone();  
+
+    var right_upper_arm = gen_rect(1.5, 4);
     right_upper_arm.name = "right_upper_arm";
+    var right_lower_arm = gen_rect(1, 3);
+    right_lower_arm.name = "right_lower_arm";
+    var right_hand = gen_rect(1.5,0.5);
+    right_hand.name = "right_hand";
+    right_upper_arm.add(right_lower_arm);
+    right_lower_arm.add(right_hand);
+    right_hand.position.y = -1.5;
+    right_lower_arm.position.y = -3;
     right_upper_arm.position.x = 2.6;
+
     
 
     // left: upper leg, leg, foot
@@ -65,6 +75,14 @@ function gen_robot() {
     right_lower_leg.position.y = -3;
     right_upper_leg.position.x = 1.2;
     right_upper_leg.position.y = -4.6;
+
+    //EYE
+    var left_eye = gen_circle(0.5);
+    left_eye.position.y = 0.5;
+    left_eye.position.x = -1;
+    var right_eye = gen_circle(0.5);
+    right_eye.position.y = 0.5;
+    right_eye.position.x = 1;
     
 
 
@@ -76,6 +94,8 @@ function gen_robot() {
     // TO DO: add remaining robot parts hierarchical relations
     torso.add(left_upper_leg);
     torso.add(right_upper_leg);
+    head.add(left_eye);
+    head.add(right_eye);
 
 
     robot.name = "robot";
